@@ -2,6 +2,7 @@
   "name": "node-notes-cli",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "bin": {
     "note": "./index.js"
