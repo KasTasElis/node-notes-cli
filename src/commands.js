@@ -1,7 +1,7 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { resetNotes } from "./notes.js";
+import { resetNotes, addNewNote } from "./notes.js";
 
 yargs(hideBin(process.argv))
   .command(
@@ -14,8 +14,10 @@ yargs(hideBin(process.argv))
         type: "string",
       });
     },
-    (argv) => {
-      console.log("Adding a new note: ", argv.note);
+    async (argv) => {
+      const newNote = await addNewNote(argv.note);
+
+      console.log("New note created: ", newNote);
     }
   )
   .command(

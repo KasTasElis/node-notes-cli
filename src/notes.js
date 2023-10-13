@@ -3,9 +3,16 @@ import { getDb, updateDb, initialiseDb } from "./db/index.js";
 export const addNewNote = async (note) => {
   const db = await getDb();
 
-  db.notes.push(note);
+  const newNote = {
+    id: Date.now(),
+    note,
+  };
 
-  updateDb(db);
+  db.notes.push(newNote);
+
+  await updateDb(db);
+
+  return newNote;
 };
 
 export const removeNote = async (id) => {
