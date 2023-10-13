@@ -7,6 +7,7 @@ import {
   removeNote,
   getNotes,
   findNotes,
+  updateNote,
 } from "./notes.js";
 
 yargs(hideBin(process.argv))
@@ -69,8 +70,9 @@ yargs(hideBin(process.argv))
     "update <noteId> <note>",
     "Update a note",
     () => {},
-    (argv) => {
-      console.log("Updating note with id: ", argv.noteId);
+    async (argv) => {
+      const newNote = await updateNote(argv.noteId, argv.note);
+      console.log("Updated note: ", newNote);
     }
   )
   .command(

@@ -64,7 +64,7 @@ export const updateNote = async (id, note) => {
       return newNote;
     }
 
-    return note;
+    return item;
   });
 
   await updateDb({ ...db, notes: newNotes });
