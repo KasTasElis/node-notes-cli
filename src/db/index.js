@@ -5,7 +5,7 @@ export const initialiseDb = async () => {
     notes: [],
   };
 
-  await fs.writeFile("./data.json", JSON.stringify(initialData, null, 2));
+  await fs.writeFile("./db/data.json", JSON.stringify(initialData, null, 2));
 };
 
 export const getDb = async () => {

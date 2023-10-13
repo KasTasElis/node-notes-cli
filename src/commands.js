@@ -1,6 +1,8 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
+import { resetNotes } from "./notes.js";
+
 yargs(hideBin(process.argv))
   .command(
     "new <note>",
@@ -52,8 +54,9 @@ yargs(hideBin(process.argv))
     "reset",
     "Reset the database",
     () => {},
-    () => {
-      console.log("Resetting the DB!");
+    async () => {
+      await resetNotes();
+      console.log("Database has been reset!");
     }
   )
   .demandCommand(1)

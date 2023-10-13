@@ -1,4 +1,4 @@
-import { getDb, updateDb, initialiseDb } from "./db";
+import { getDb, updateDb, initialiseDb } from "./db/index.js";
 
 export const addNewNote = async (note) => {
   const db = await getDb();
