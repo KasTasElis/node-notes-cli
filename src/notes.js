@@ -38,16 +38,14 @@ export const getNotes = async () => {
   return db.notes;
 };
 
-export const getNote = async (id) => {
+export const findNotes = async (searchString) => {
   const db = await getDb();
 
-  const note = db.notes.find((note) => note.id === id);
+  const notes = db.notes.filter(({ note }) =>
+    note.toLowerCase().includes(searchString.toLowerCase())
+  );
 
-  if (!note) {
-    throw new Error("Note not found!");
-  }
-
-  return note;
+  return notes;
 };
 
 export const updateNote = async (id, note) => {

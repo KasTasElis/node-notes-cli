@@ -1,7 +1,13 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { resetNotes, addNewNote, removeNote, getNotes } from "./notes.js";
+import {
+  resetNotes,
+  addNewNote,
+  removeNote,
+  getNotes,
+  findNotes,
+} from "./notes.js";
 
 yargs(hideBin(process.argv))
   .command(
@@ -44,10 +50,19 @@ yargs(hideBin(process.argv))
   )
   .command(
     "find <search>",
-    "Find a note",
+    "Find notes",
     () => {},
-    (argv) => {
-      console.log("Reading note with id: ", argv.noteId);
+    async (argv) => {
+      const notes = await findNotes(argv.search);
+
+      if (notes.length === 0) {
+        console.log("No notes found!");
+        return;
+      }
+
+      for (const note of notes) {
+        console.log(note);
+      }
     }
   )
   .command(
