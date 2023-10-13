@@ -56,4 +56,5 @@ yargs(hideBin(process.argv))
       console.log("Resetting the DB!");
     }
   )
+  .demandCommand(1)
   .parse();
