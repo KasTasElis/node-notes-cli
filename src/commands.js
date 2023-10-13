@@ -1,7 +1,7 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { resetNotes, addNewNote } from "./notes.js";
+import { resetNotes, addNewNote, removeNote } from "./notes.js";
 
 yargs(hideBin(process.argv))
   .command(
@@ -21,11 +21,13 @@ yargs(hideBin(process.argv))
     }
   )
   .command(
-    "delete <noteId>",
-    "Delete a note",
+    "remove <noteId>",
+    "Remove a note",
     () => {},
-    (argv) => {
-      console.log("Deleting note with id: ", argv.noteId);
+    async (argv) => {
+      const removedNote = await removeNote(argv.noteId);
+
+      console.log("Removed note: ", removedNote);
     }
   )
   .command(
